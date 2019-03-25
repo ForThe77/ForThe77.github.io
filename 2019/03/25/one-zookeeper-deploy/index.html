@@ -116,13 +116,13 @@
 <meta property="og:site_name" content="StillFor7">
 <meta property="og:description" content="简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会因为">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://forthe77.github.io/2019/03/25/images/zkservice.jpg">
-<meta property="og:image" content="https://forthe77.github.io/2019/03/25/images/zknamespace.jpg">
-<meta property="og:updated_time" content="2019-03-25T14:40:32.284Z">
+<meta property="og:image" content="https://forthe77.github.io/2019/03/25/one-zookeeper-deploy/one-zookeeper-deploy/zkservice.jpg">
+<meta property="og:image" content="https://forthe77.github.io/2019/03/25/one-zookeeper-deploy/one-zookeeper-deploy/zknamespace.jpg">
+<meta property="og:updated_time" content="2019-03-25T14:45:14.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一、Zookeeper简介、三种搭建模式和配置文件详解">
 <meta name="twitter:description" content="简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会因为">
-<meta name="twitter:image" content="https://forthe77.github.io/2019/03/25/images/zkservice.jpg">
+<meta name="twitter:image" content="https://forthe77.github.io/2019/03/25/one-zookeeper-deploy/one-zookeeper-deploy/zkservice.jpg">
 
 
 
@@ -426,7 +426,7 @@
                 
               
 
-              <time title="创建时间：2019-03-25 21:52:22 / 修改时间：22:40:32" itemprop="dateCreated datePublished" datetime="2019-03-25T21:52:22+08:00">2019-03-25</time>
+              <time title="创建时间：2019-03-25 21:52:22 / 修改时间：22:45:14" itemprop="dateCreated datePublished" datetime="2019-03-25T21:52:22+08:00">2019-03-25</time>
             
 
             
@@ -482,13 +482,13 @@
       
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。<br>ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会因为某一个节点服务宕机而导致整个集群崩溃。它可提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br><img src="../images/zkservice.jpg" alt="ZooKeeper Service"><br><a id="more"></a><br>Zookeeper集群中的角色主要有：</p>
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。<br>ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会因为某一个节点服务宕机而导致整个集群崩溃。它可提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br><img src="one-zookeeper-deploy/zkservice.jpg" alt="ZooKeeper Service"><br><a id="more"></a><br>Zookeeper集群中的角色主要有：</p>
 <ul>
 <li><strong>Leader</strong>：为zk集群的核心，负责集群内部的调度、投票的发起和决策和系统状态更新登。</li>
 <li><strong>Follower</strong>：接收Client请求、转发请求给Leader和参与投票等。</li>
 <li><strong>Observer</strong>：充当观察者角色，功能与Follower基本一致，不同点在于它不参与任何形式的投票，它只提供非事务请求服务。</li>
 </ul>
-<p>Zookeeper维护一个具有层次关系的数据结构，类似于文件系统，名称是由斜杠（/）分隔的路径元素序列，ZooKeeper名称空间中的每个节点都由路径标识。<br><img src="../images/zknamespace.jpg" alt="ZooKeeper&#39;s Hierarchical Namespace"></p>
+<p>Zookeeper维护一个具有层次关系的数据结构，类似于文件系统，名称是由斜杠（/）分隔的路径元素序列，ZooKeeper名称空间中的每个节点都由路径标识。<br><img src="one-zookeeper-deploy/zknamespace.jpg" alt="ZooKeeper&#39;s Hierarchical Namespace"></p>
 <h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><p>### </p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] Zookeeper Overview. <a href="http://zookeeper.apache.org/doc/r3.4.10/zookeeperOver.html" target="_blank" rel="noopener">http://zookeeper.apache.org/doc/r3.4.10/zookeeperOver.html</a>.<br>[2] ZooKeeper Administrator’s Guide. <a href="http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_configuration" target="_blank" rel="noopener">http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_configuration</a>.<br>[3] zookeeper调优(遇到就添加）. <a href="https://my.oschina.net/u/3049601/blog/1809785" target="_blank" rel="noopener">https://my.oschina.net/u/3049601/blog/1809785</a>.<br>[4] zookeeper日志各类日志简介. <a href="https://www.cnblogs.com/jxwch/p/6526271.html" target="_blank" rel="noopener">https://www.cnblogs.com/jxwch/p/6526271.html</a>.<br>[5] ZooKeeper: 简介, 配置及运维指南. <a href="https://www.cnblogs.com/neooelric/p/9230967.html" target="_blank" rel="noopener">https://www.cnblogs.com/neooelric/p/9230967.html</a>.<br>[6] ZooKeeper学习第二期–ZooKeeper安装配置. <a href="https://www.cnblogs.com/sunddenly/p/4018459.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunddenly/p/4018459.html</a></p>
 

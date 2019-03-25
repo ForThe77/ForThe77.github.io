@@ -111,16 +111,16 @@
   <meta name="description" content="1.简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会">
 <meta name="keywords" content="zookeeper">
 <meta property="og:type" content="article">
-<meta property="og:title" content="one_zookeeper_deploy">
+<meta property="og:title" content="一、Zookeeper简介、三种搭建模式和配置文件详解">
 <meta property="og:url" content="https://forthe77.github.io/2019/03/25/one-zookeeper-deploy/index.html">
 <meta property="og:site_name" content="StillFor7">
 <meta property="og:description" content="1.简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://forthe77.github.io/2019/03/25/images/zkservice.jpg">
 <meta property="og:image" content="https://forthe77.github.io/2019/03/25/images/zknamespace.jpg">
-<meta property="og:updated_time" content="2019-03-25T14:12:21.359Z">
+<meta property="og:updated_time" content="2019-03-25T14:17:35.412Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="one_zookeeper_deploy">
+<meta name="twitter:title" content="一、Zookeeper简介、三种搭建模式和配置文件详解">
 <meta name="twitter:description" content="1.简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会">
 <meta name="twitter:image" content="https://forthe77.github.io/2019/03/25/images/zkservice.jpg">
 
@@ -139,7 +139,7 @@
   };
 </script>
 
-  <title>one_zookeeper_deploy | StillFor7</title>
+  <title>一、Zookeeper简介、三种搭建模式和配置文件详解 | StillFor7</title>
   
 
 
@@ -401,7 +401,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">one_zookeeper_deploy
+          <h1 class="post-title" itemprop="name headline">一、Zookeeper简介、三种搭建模式和配置文件详解
               
             
           </h1>
@@ -426,7 +426,7 @@
                 
               
 
-              <time title="创建时间：2019-03-25 21:52:22 / 修改时间：22:12:21" itemprop="dateCreated datePublished" datetime="2019-03-25T21:52:22+08:00">2019-03-25</time>
+              <time title="创建时间：2019-03-25 21:52:22 / 修改时间：22:17:35" itemprop="dateCreated datePublished" datetime="2019-03-25T21:52:22+08:00">2019-03-25</time>
             
 
             
@@ -482,7 +482,7 @@
       
 
       
-        <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。<br>ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会因为某一个节点服务宕机而导致整个集群崩溃。它可提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br><img src="../images/zkservice.jpg" alt="ZooKeeper Service"></p>
+        <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。<br>ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会因为某一个节点服务宕机而导致整个集群崩溃。它可提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<a id="more"></a><br><img src="../images/zkservice.jpg" alt="ZooKeeper Service"></p>
 <p>Zookeeper集群中的角色主要有：</p>
 <ul>
 <li><strong>Leader</strong>：为zk集群的核心，负责集群内部的调度、投票的发起和决策和系统状态更新登。</li>

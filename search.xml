@@ -11,23 +11,4 @@
         <tag>zookeeper</tag>
       </tags>
   </entry>
-  <entry>
-    <title><![CDATA[Hello, my little seven!]]></title>
-    <url>%2F2018%2F12%2F31%2Fpost-title%2F</url>
-    <content type="text"><![CDATA[===标题：=== 一级标题二级标题三级标题四级标题五级标题六级标题 ===强调：使用 和 _ 来表示斜体和加粗=== Coding，让开发更简单*Coding，让开发更简单Coding，让开发更简单Coding，让开发更简单 ===自动链接：方括号显示说明，圆括号内显示网址===超强大的云开发平台Coding ===锚点：=== ===引用：=== Coding.net 为软件开发者提供基于云计算技术的软件开发平台，包括项目管理，代码托管，运行空间和质量控制等等。 这是第一级引用。 这是第二级引用。 现在回到第一级引用。 这是一个标题。 这是第一行列表项。 这是第二行列表项。 给出一些例子代码： return shell_exec(echo $input | $markdown_script); ===列表：=== 无字列表 无字列表 无字列表 无字列表 无字列表 无字列表 有序列表1 有序列表2 有序列表3 如果要在列表项目内放进引用，那『&gt;』就需要缩进： Coding.net有以下主要功能: 代码托管平台在线运行环境代码质量监控项目管理平台 待办列表: 表示列表是否勾选状态（注意：[ ] 前后都要有空格） 不勾选 勾选 ===代码：===123require 'redcarpet'markdown = Redcarpet.new("Hello World!")puts markdown.to_html ===表格：===First Header | Second Header | Third Header———— | ————- | ————Content Cell | Content Cell | Content CellContent Cell | Content Cell | Content Cell First Header Second Header Third Header Left Center Right Left Center Right ===分割线：使用 3 个以上『-』=== ===图片：===内联图片语法：or 引用图片语法：![Alt text][id][id]: url/to/image “Optional title attribute” ===流程图：===12345678graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;E; E--&gt;F; D--&gt;F; F--&gt;G; ===时序图：===123456789101112sequenceDiagram participant Alice participant Bob Alice-&gt;John: Hello John, how are you? loop Healthcheck John-&gt;John: Fight against hypochondria end Note right of John: Rational thoughts prevail... John--&gt;Alice: Great! John-&gt;Bob: How about you? Bob--&gt;John: Jolly good! ===甘特图：=== 123456789101112131415gantt dateFormat YYYY-MM-DD title Adding GANTT diagram functionality to mermaid section A section Completed task :done, des1, 2014-01-06,2014-01-08 Active task :active, des2, 2014-01-09, 3d Future task : des3, after des2, 5d Future task2 : des4, after des3, 5d section Critical tasks Completed task in the critical line :crit, done, 2014-01-06,24h Implement parser and jison :crit, done, after des1, 2d Create tests for parser :crit, active, 3d Future task in critical line :crit, 5d Create tests for renderer :2d Add to mermaid :1d]]></content>
-      <categories>
-        <category>只是测试</category>
-        <category>测试1</category>
-        <category>测试1-1</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-        <tag>基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2018%2F12%2F29%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-  </entry>
 </search>

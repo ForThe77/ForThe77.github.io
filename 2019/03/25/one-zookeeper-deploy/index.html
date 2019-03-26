@@ -108,20 +108,20 @@
 
 
 
-  <meta name="description" content="1.简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会">
+  <meta name="description" content="1. 简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不">
 <meta name="keywords" content="zookeeper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一、Zookeeper简介、三种搭建模式和配置文件详解">
 <meta property="og:url" content="https://forthe77.github.io/2019/03/25/one-zookeeper-deploy/index.html">
 <meta property="og:site_name" content="StillFor7">
-<meta property="og:description" content="1.简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会">
+<meta property="og:description" content="1. 简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://forthe77.github.io/2019/03/25/one-zookeeper-deploy/zkservice.jpg">
 <meta property="og:image" content="https://forthe77.github.io/2019/03/25/one-zookeeper-deploy/zknamespace.jpg">
-<meta property="og:updated_time" content="2019-03-26T01:45:16.433Z">
+<meta property="og:updated_time" content="2019-03-26T02:28:26.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一、Zookeeper简介、三种搭建模式和配置文件详解">
-<meta name="twitter:description" content="1.简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会">
+<meta name="twitter:description" content="1. 简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不">
 <meta name="twitter:image" content="https://forthe77.github.io/2019/03/25/one-zookeeper-deploy/zkservice.jpg">
 
 
@@ -443,7 +443,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-26 09:45:16" itemprop="dateModified" datetime="2019-03-26T09:45:16+08:00">2019-03-26</time>
+                <time title="修改时间：2019-03-26 10:28:26" itemprop="dateModified" datetime="2019-03-26T10:28:26+08:00">2019-03-26</time>
               
             
           </span>
@@ -494,20 +494,20 @@
       
 
       
-        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。<br>ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会因为某一个节点服务宕机而导致整个集群崩溃。它可提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br><img src="/2019/03/25/one-zookeeper-deploy/zkservice.jpg" alt="ZooKeeper Service"><br><a id="more"></a><br>Zookeeper集群中的角色主要有：</p>
+        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。<br>ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会因为某一个节点服务宕机而导致整个集群崩溃。它可提供的功能包括：配置维护、域名服务、分布式同步、组服务等。<br><img src="/2019/03/25/one-zookeeper-deploy/zkservice.jpg" alt="ZooKeeper Service"><br><a id="more"></a><br>Zookeeper集群中的角色主要有：</p>
 <ul>
 <li><strong>Leader</strong>：为zk集群的核心，负责集群内部的调度、投票的发起和决策和系统状态更新登。</li>
 <li><strong>Follower</strong>：接收Client请求、转发请求给Leader和参与投票等。</li>
 <li><strong>Observer</strong>：充当观察者角色，功能与Follower基本一致，不同点在于它不参与任何形式的投票，它只提供非事务请求服务。</li>
 </ul>
 <p>Zookeeper维护一个具有层次关系的数据结构，类似于文件系统，名称是由斜杠（/）分隔的路径元素序列，ZooKeeper名称空间中的每个节点都由路径标识。<br><img src="/2019/03/25/one-zookeeper-deploy/zknamespace.jpg" alt="ZooKeeper&#39;s Hierarchical Namespace"></p>
-<h1 id="2-安装配置"><a href="#2-安装配置" class="headerlink" title="2.安装配置"></a>2.安装配置</h1><p>zookeeper的相关资源如下：</p>
+<h1 id="2-安装配置"><a href="#2-安装配置" class="headerlink" title="2. 安装配置"></a>2. 安装配置</h1><p>zookeeper的相关资源如下：</p>
 <ul>
 <li>官网：<a href="http://zookeeper.apache.org/" target="_blank" rel="noopener">http://zookeeper.apache.org/</a></li>
 <li>下载：<a href="https://archive.apache.org/dist/zookeeper/" target="_blank" rel="noopener">https://archive.apache.org/dist/zookeeper/</a>      </li>
 </ul>
 <p>zookeeper的安装之前，需确保java环境运行正常。<br>zookeeper有三种搭建方式：<strong>单机模式</strong>、<strong>伪集群模式</strong>和<strong>集群模式</strong>。</p>
-<h2 id="2-1-单机模式"><a href="#2-1-单机模式" class="headerlink" title="2.1.单机模式"></a>2.1.单机模式</h2><p><strong>解压</strong>：将下载好的zookeeper-*.tar.gz解压到指定安装目录下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf zookeeper-3.4.10.tar.gz #解压zookeeper压缩包</span><br><span class="line">cd zookeeper-3.4.10 #进入zookeeper根目录</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-1-单机模式"><a href="#2-1-单机模式" class="headerlink" title="2.1. 单机模式"></a>2.1. 单机模式</h2><p><strong>解压</strong>：将下载好的zookeeper-*.tar.gz解压到指定安装目录下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf zookeeper-3.4.10.tar.gz #解压zookeeper压缩包</span><br><span class="line">cd zookeeper-3.4.10 #进入zookeeper根目录</span><br></pre></td></tr></table></figure></p>
 <p><strong>主要目录结构</strong>：</p>
 <ul>
 <li>bin：一些执行脚本命令，其中，<em>.sh为linux环境下脚本，</em>.cmd为windows下脚本。</li>
@@ -530,7 +530,65 @@
 <p>输出状态信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /usr/local/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg</span><br><span class="line">Mode: standalone   #说明当前为单机模式</span><br></pre></td></tr></table></figure></p>
 <p><strong>关闭zk服务</strong>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh stop</span><br></pre></td></tr></table></figure></p>
 <p>关闭信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /usr/local/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg</span><br><span class="line">Stopping zookeeper ... STOPPED</span><br></pre></td></tr></table></figure></p>
-<h2 id="伪集群模式"><a href="#伪集群模式" class="headerlink" title="伪集群模式"></a>伪集群模式</h2><h1 id="配置文件详解"><a href="#配置文件详解" class="headerlink" title="配置文件详解"></a>配置文件详解</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] Zookeeper Overview. <a href="http://zookeeper.apache.org/doc/r3.4.10/zookeeperOver.html" target="_blank" rel="noopener">http://zookeeper.apache.org/doc/r3.4.10/zookeeperOver.html</a>.<br>[2] ZooKeeper Administrator’s Guide. <a href="http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_configuration" target="_blank" rel="noopener">http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_configuration</a>.<br>[3] zookeeper调优(遇到就添加）. <a href="https://my.oschina.net/u/3049601/blog/1809785" target="_blank" rel="noopener">https://my.oschina.net/u/3049601/blog/1809785</a>.<br>[4] zookeeper日志各类日志简介. <a href="https://www.cnblogs.com/jxwch/p/6526271.html" target="_blank" rel="noopener">https://www.cnblogs.com/jxwch/p/6526271.html</a>.<br>[5] ZooKeeper: 简介, 配置及运维指南. <a href="https://www.cnblogs.com/neooelric/p/9230967.html" target="_blank" rel="noopener">https://www.cnblogs.com/neooelric/p/9230967.html</a>.<br>[6] ZooKeeper学习第二期–ZooKeeper安装配置. <a href="https://www.cnblogs.com/sunddenly/p/4018459.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunddenly/p/4018459.html</a></p>
+<h2 id="2-2-伪集群模式"><a href="#2-2-伪集群模式" class="headerlink" title="2.2. 伪集群模式"></a>2.2. 伪集群模式</h2><p>zookeeper还可以在单机上运行多个zk实例，实现单机伪集群的搭建，即单机环境下模拟zk集群的运行。<br>现在在单机上搭建一个3个节点的伪分布式环境，需要配置3个配置文件（zoo1.cfg、zoo2.cfg、zoo3.cfg，分别代表3个节点的配置信息）。在配置过程中，必须保证各个配置文件中的端口号（clientPort）不能冲突，zk数据及日志保存目录（dataDir、dataLogDir）也不能一样。除此之外，还需要在每个节点对应的dataDir中创建一个名为myid的文件，并写入一个数字以标识当前的zk实例。<br>在一台单机上部署3个节点的伪集群模式的zookeeper环境，假设3台zk服务分别为server1、server2和server3，对应3个配置文件分别为zoo1.cfg、zoo2.cfg和zoo3.cfg，这些重点的<strong>配置文件信息</strong>描述如下：<br><strong>conf/zoo1.cfg</strong>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">initLimit=10</span><br><span class="line">syncLimit=5</span><br><span class="line">dataDir=/usr/local/zookeeper/zookeeper-3.4.10/cluster-data/dataDir1</span><br><span class="line">dataLogDir=/usr/local/zookeeper/zookeeper-3.4.10/cluster-data/dataLogDir1</span><br><span class="line">clientPort=2181</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>server.id=host:port1:port2,其中id为server id,对应myid;host为ip或主机名称;port1为用于followers连接到leader的端口; port2为leader选举时使用的端口.</span><br><span class="line">server.1=127.0.0.1:2287:3387</span><br><span class="line">server.2=127.0.0.1:2288:3388</span><br><span class="line">server.3=127.0.0.1:2289:3389</span><br></pre></td></tr></table></figure></p>
+<p>创建myid文件，并写入server id：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo "1" &gt; cluster-data/dataDir1/myid</span><br></pre></td></tr></table></figure></p>
+<p><strong>conf/zoo2.cfg</strong>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">initLimit=10</span><br><span class="line">syncLimit=5</span><br><span class="line">dataDir=/usr/local/zookeeper/zookeeper-3.4.10/cluster-data/dataDir2</span><br><span class="line">dataLogDir=/usr/local/zookeeper/zookeeper-3.4.10/cluster-data/dataLogDir2</span><br><span class="line">clientPort=2182</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>server.id=host:port1:port2,其中id为server id,对应myid;host为ip或主机名称;port1为用于followers连接到leader的端口; port2为leader选举时使用的端口.</span><br><span class="line">server.1=127.0.0.1:2287:3387</span><br><span class="line">server.2=127.0.0.1:2288:3388</span><br><span class="line">server.3=127.0.0.1:2289:3389</span><br></pre></td></tr></table></figure></p>
+<p>创建myid文件，并写入server id：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo "2" &gt; cluster-data/dataDir2/myid</span><br></pre></td></tr></table></figure></p>
+<p><strong>conf/zoo3.cfg</strong>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">initLimit=10</span><br><span class="line">syncLimit=5</span><br><span class="line">dataDir=/usr/local/zookeeper/zookeeper-3.4.10/cluster-data/dataDir3</span><br><span class="line">dataLogDir=/usr/local/zookeeper/zookeeper-3.4.10/cluster-data/dataLogDir3</span><br><span class="line">clientPort=2183</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>server.id=host:port1:port2,其中id为server id,对应myid;host为ip或主机名称;port1为用于followers连接到leader的端口; port2为leader选举时使用的端口.</span><br><span class="line">server.1=127.0.0.1:2287:3387</span><br><span class="line">server.2=127.0.0.1:2288:3388</span><br><span class="line">server.3=127.0.0.1:2289:3389</span><br></pre></td></tr></table></figure></p>
+<p>创建myid文件，并写入server id：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo "3" &gt; cluster-data/dataDir3/myid</span><br></pre></td></tr></table></figure></p>
+<p><strong>启动zk服务</strong>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh start conf/zoo1.cfg</span><br><span class="line"><span class="meta">#</span>运行server1实例，输出信息如下：</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: conf/zoo1.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br><span class="line"></span><br><span class="line">zkServer.sh start conf/zoo2.cfg</span><br><span class="line"><span class="meta">#</span>运行server2实例，输出信息如下：</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: conf/zoo2.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br><span class="line"></span><br><span class="line">zkServer.sh start conf/zoo3.cfg</span><br><span class="line"><span class="meta">#</span>运行server3实例，输出信息如下：</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: conf/zoo3.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br></pre></td></tr></table></figure></p>
+<p>启动后，可通过jps命令，查看zk运行情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">18866 QuorumPeerMain</span><br><span class="line">18967 Jps</span><br><span class="line">18936 QuorumPeerMain</span><br><span class="line">18894 QuorumPeerMain</span><br></pre></td></tr></table></figure></p>
+<p>其中，QuorumPeerMain为zk集群的启动入口类，用来加载配置启动QuorumPeer线程。</p>
+<p><strong>查看zk个节点状态</strong>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh status conf/zoo1.cfg</span><br><span class="line"><span class="meta">#</span>查看server1状态，输出信息如下：</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: conf/zoo1.cfg</span><br><span class="line">Mode: follower</span><br><span class="line"></span><br><span class="line">zkServer.sh status conf/zoo2.cfg</span><br><span class="line"><span class="meta">#</span>查看server2状态，输出信息如下：</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: conf/zoo2.cfg</span><br><span class="line">Mode: leader</span><br><span class="line"></span><br><span class="line">zkServer.sh status conf/zoo3.cfg</span><br><span class="line"><span class="meta">#</span>查看server3状态，输出信息如下：</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: conf/zoo3.cfg</span><br><span class="line">Mode: follower</span><br></pre></td></tr></table></figure></p>
+<p>从返回的状态信息可知，server2为leader、server1和server3为follower。</p>
+<h2 id="2-3-集群模式"><a href="#2-3-集群模式" class="headerlink" title="2.3. 集群模式"></a>2.3. 集群模式</h2><p>在真实环境中，为提供可靠的zookeeper分布式环境，通常一台机器上只部署一个zk服务。在zk集群中，若超过半数以上的服务节点可用，则整个zk集群服务是可用的，故而其节点数通常为大于等于3的奇数（2n+1）。<br>现在分别在3台机器上搭建zk分部署环境，3台机器情况如下：<br>zk服务标识 | ip | myid<br>———— | ————- | ————<br>server1 | 192.168.56.100  | 1<br>server2 | 192.168.56.101  | 2<br>server3 | 192.168.56.102  | 3</p>
+<p>集群配置方式与上面两种方式类似，为方便操作可在每台机器上配置zookeeper的环境变量，每台机器上的配置文件也都相同。<br><strong>conf/zoo.cfg</strong>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">initLimit=10</span><br><span class="line">syncLimit=5</span><br><span class="line">dataDir=/usr/local/zookeeper/zookeeper-3.4.10/dataDir</span><br><span class="line">dataLogDir=/usr/local/zookeeper/zookeeper-3.4.10/dataLogDir</span><br><span class="line">clientPort=2182</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>server.id=host:port1:port2,其中id为server id,对应myid;host为ip或主机名称;port1为用于followers连接到leader的端口; port2为leader选举时使用的端口.</span><br><span class="line">server.1=192.168.56.100:2288:3388</span><br><span class="line">server.2=192.168.56.101:2288:3388</span><br><span class="line">server.3=192.168.56.102:2288:3388</span><br></pre></td></tr></table></figure></p>
+<p>在每台机器上的/usr/local/zookeeper/zookeeper-3.4.10/dataDir中创建myid文件，并写入server id：server1为1、server2为2、server3为3。</p>
+<p><strong>在每台机器上分别启动zk服务</strong>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh start</span><br></pre></td></tr></table></figure></p>
+<h1 id="3-配置文件详解"><a href="#3-配置文件详解" class="headerlink" title="3. 配置文件详解"></a>3. 配置文件详解</h1><h2 id="3-1-conf-zoo-sample-cfg："><a href="#3-1-conf-zoo-sample-cfg：" class="headerlink" title="3.1. conf/zoo_sample.cfg："></a>3.1. conf/zoo_sample.cfg：</h2><p>zoo_sample.cfg为zookeeper的核心配置文件，需要将其修改为zoo.cfg。其中各个参数的解释如下：</p>
+<ul>
+<li><strong>Minimum Configuration（必要配置参数）</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tickTime</td>
+<td>默认为2000。<br>zk中基本时间单位长度（ms），zk中的时间都以该时间为基础，是该时间的倍数，如最小的session过期时间就是tickTime的两倍。<br>服务器与服务器或客户端与服务器之间维持心跳的时间间隔，即每个tickTime会发送一个心跳，通过该心跳可以监视机器的工作状态、控制follower和leader的通信时间等。</td>
+</tr>
+<tr>
+<td>dataDir</td>
+<td>默认为/tmp/zookeeper。该默认目录仅为样例，不建议直接使用。<br>存储快照文件snapshot的目录，即保存数据的目录，默认情况下，zk会将写数据的日志文件也存储在该目录。<br>zk的数据在内存中以树形结构进行存储，而快照为每隔一段时间就会把整个DataTree的数据序列化后存储在磁盘中。</td>
+</tr>
+<tr>
+<td>clientPort</td>
+<td>默认为2181。<br>客户端连接zk服务器的端口，zk会监听这个端口，接受客户端的访问请求。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Advanced Configuration（可选的高级配置项，更细化的控制）</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dataLogDir</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1] Zookeeper Overview. <a href="http://zookeeper.apache.org/doc/r3.4.10/zookeeperOver.html" target="_blank" rel="noopener">http://zookeeper.apache.org/doc/r3.4.10/zookeeperOver.html</a>.<br>[2] ZooKeeper Administrator’s Guide. <a href="http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_configuration" target="_blank" rel="noopener">http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_configuration</a>.<br>[3] zookeeper调优(遇到就添加）. <a href="https://my.oschina.net/u/3049601/blog/1809785" target="_blank" rel="noopener">https://my.oschina.net/u/3049601/blog/1809785</a>.<br>[4] zookeeper日志各类日志简介. <a href="https://www.cnblogs.com/jxwch/p/6526271.html" target="_blank" rel="noopener">https://www.cnblogs.com/jxwch/p/6526271.html</a>.<br>[5] ZooKeeper: 简介, 配置及运维指南. <a href="https://www.cnblogs.com/neooelric/p/9230967.html" target="_blank" rel="noopener">https://www.cnblogs.com/neooelric/p/9230967.html</a>.<br>[6] ZooKeeper学习第二期–ZooKeeper安装配置. <a href="https://www.cnblogs.com/sunddenly/p/4018459.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunddenly/p/4018459.html</a></p>
 
       
     </div>
@@ -724,7 +782,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-简介"><span class="nav-text">1.简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安装配置"><span class="nav-text">2.安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-单机模式"><span class="nav-text">2.1.单机模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪集群模式"><span class="nav-text">伪集群模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件详解"><span class="nav-text">配置文件详解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-简介"><span class="nav-text">1. 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安装配置"><span class="nav-text">2. 安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-单机模式"><span class="nav-text">2.1. 单机模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-伪集群模式"><span class="nav-text">2.2. 伪集群模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-集群模式"><span class="nav-text">2.3. 集群模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-配置文件详解"><span class="nav-text">3. 配置文件详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-conf-zoo-sample-cfg："><span class="nav-text">3.1. conf/zoo_sample.cfg：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>

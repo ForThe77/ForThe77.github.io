@@ -12,17 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[一、Zookeeper简介、三种搭建模式和配置文件详解]]></title>
-    <url>%2F2019%2F03%2F25%2Foneone%2F</url>
-    <content type="text"><![CDATA[简介Zookeeper缘起于非开源的Google的Chubby，雅虎模仿Chubby开发了ZooKeeper，实现了类似的分布式锁管理，并捐给了Apache，作为是Hadoop和Hbase的重要组件。ZooKeeper是一种用于分布式应用程序的分布式开源协调服务，它主要是用来解决分布式应用中经常遇到的一些数据一致性问题。它的一致性、可靠性和容错性保证了其能够在大型分布式系统中稳定的表现，并不会因为某一个节点服务宕机而导致整个集群崩溃。它可提供的功能包括：配置维护、域名服务、分布式同步、组服务等。Zookeeper集群中的角色主要有： Leader：为zk集群的核心，负责集群内部的调度、投票的发起和决策和系统状态更新登。 Follower：接收Client请求、转发请求给Leader和参与投票等。 Observer：充当观察者角色，功能与Follower基本一致，不同点在于它不参与任何形式的投票，它只提供非事务请求服务。 Zookeeper维护一个具有层次关系的数据结构，类似于文件系统，名称是由斜杠（/）分隔的路径元素序列，ZooKeeper名称空间中的每个节点都由路径标识。 安装配置### 参考资料[1] Zookeeper Overview. http://zookeeper.apache.org/doc/r3.4.10/zookeeperOver.html.[2] ZooKeeper Administrator’s Guide. http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_configuration.[3] zookeeper调优(遇到就添加）. https://my.oschina.net/u/3049601/blog/1809785.[4] zookeeper日志各类日志简介. https://www.cnblogs.com/jxwch/p/6526271.html.[5] ZooKeeper: 简介, 配置及运维指南. https://www.cnblogs.com/neooelric/p/9230967.html.[6] ZooKeeper学习第二期–ZooKeeper安装配置. https://www.cnblogs.com/sunddenly/p/4018459.html]]></content>
-      <categories>
-        <category>zookeeper</category>
-      </categories>
-      <tags>
-        <tag>zookeeper</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Hello, my little seven!]]></title>
     <url>%2F2018%2F12%2F31%2Fpost-title%2F</url>
     <content type="text"><![CDATA[===标题：=== 一级标题二级标题三级标题四级标题五级标题六级标题 ===强调：使用 和 _ 来表示斜体和加粗=== Coding，让开发更简单*Coding，让开发更简单Coding，让开发更简单Coding，让开发更简单 ===自动链接：方括号显示说明，圆括号内显示网址===超强大的云开发平台Coding ===锚点：=== ===引用：=== Coding.net 为软件开发者提供基于云计算技术的软件开发平台，包括项目管理，代码托管，运行空间和质量控制等等。 这是第一级引用。 这是第二级引用。 现在回到第一级引用。 这是一个标题。 这是第一行列表项。 这是第二行列表项。 给出一些例子代码： return shell_exec(echo $input | $markdown_script); ===列表：=== 无字列表 无字列表 无字列表 无字列表 无字列表 无字列表 有序列表1 有序列表2 有序列表3 如果要在列表项目内放进引用，那『&gt;』就需要缩进： Coding.net有以下主要功能: 代码托管平台在线运行环境代码质量监控项目管理平台 待办列表: 表示列表是否勾选状态（注意：[ ] 前后都要有空格） 不勾选 勾选 ===代码：===123require 'redcarpet'markdown = Redcarpet.new("Hello World!")puts markdown.to_html ===表格：===First Header | Second Header | Third Header———— | ————- | ————Content Cell | Content Cell | Content CellContent Cell | Content Cell | Content Cell First Header Second Header Third Header Left Center Right Left Center Right ===分割线：使用 3 个以上『-』=== ===图片：===内联图片语法：or 引用图片语法：![Alt text][id][id]: url/to/image “Optional title attribute” ===流程图：===12345678graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;E; E--&gt;F; D--&gt;F; F--&gt;G; ===时序图：===123456789101112sequenceDiagram participant Alice participant Bob Alice-&gt;John: Hello John, how are you? loop Healthcheck John-&gt;John: Fight against hypochondria end Note right of John: Rational thoughts prevail... John--&gt;Alice: Great! John-&gt;Bob: How about you? Bob--&gt;John: Jolly good! ===甘特图：=== 123456789101112131415gantt dateFormat YYYY-MM-DD title Adding GANTT diagram functionality to mermaid section A section Completed task :done, des1, 2014-01-06,2014-01-08 Active task :active, des2, 2014-01-09, 3d Future task : des3, after des2, 5d Future task2 : des4, after des3, 5d section Critical tasks Completed task in the critical line :crit, done, 2014-01-06,24h Implement parser and jison :crit, done, after des1, 2d Create tests for parser :crit, active, 3d Future task in critical line :crit, 5d Create tests for renderer :2d Add to mermaid :1d]]></content>
